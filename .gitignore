@@ -1,0 +1,23 @@
+# === CLion / JetBrains IDE ===
+.idea/
+*.iml
+
+# === CMake derleme çıktıları ===
+cmake-build-*/
+build/
+
+# === Derlenmiş dosyalar ===
+*.exe
+*.obj
+*.o
+*.a
+*.lib
+*.dll
+
+# === Windows ===
+Thumbs.db
+desktop.ini
+
+# === Debug / Log dosyaları ===
+*.log
+*.pdb
