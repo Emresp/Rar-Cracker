@@ -1,0 +1,8 @@
+//
+// Created by Emre on 22.09.2026.
+//
+
+#ifndef RARCRACKER_RAR_READER_H
+#define RARCRACKER_RAR_READER_H
+
+#endif //RARCRACKER_RAR_READER_H
