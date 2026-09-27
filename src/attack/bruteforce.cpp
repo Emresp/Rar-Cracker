@@ -1,5 +1,6 @@
 #include "bruteforce.h"
 #include <iostream>
+#include <cstdlib>
 
 //Şifre bulunursa erken durudamk için flag
 static bool bulundu = false;
@@ -27,8 +28,22 @@ std::string karakter_seti_olustur(int secim) {
     }
 }
 
+
+static bool sifre_dene(const std::string& dosya_yolu, const std::string& aday)
+{
+    //unrar.exe programına ürettiğimiz şifreleri denemesi için veren cmd komutu
+    std::string komut = "\"\"C:\\Program Files\\WinRAR\\unrar.exe\" t -p"
+                    + aday
+                    + " \"" + dosya_yolu + "\"\"";
+
+    //Komudu çalıştıran system kodu
+    int sonuc=system(komut.c_str());
+
+    return sonuc ==0;
+}
+
 //Yinilenen fonksiyon
-static void brute_force_rec(std::string& aday, const std::string& karakter_seti, int kalan) {
+static void brute_force_rec(std::string& aday, const std::string& karakter_seti, int kalan, const std::string& dosya_yolu) {
 
     if (bulundu) {
         return;
@@ -39,17 +54,18 @@ static void brute_force_rec(std::string& aday, const std::string& karakter_seti,
 
         std::cout << "Denenen: " << aday << std::endl;
 
-        if (aday == "123") {
+        if (sifre_dene(dosya_yolu, aday)) {
             bulundu = true;
             bulunan_sifre = aday;
         }
+
         return;
     }
 
 
     for (char c : karakter_seti) {
         aday += c;
-        brute_force_rec(aday, karakter_seti, kalan - 1);
+        brute_force_rec(aday, karakter_seti, kalan - 1, dosya_yolu);
         aday.pop_back();
     }
 }
@@ -63,7 +79,7 @@ std::string brute_force(const std::string& dosya_yolu,const std::string& karakte
 
     for (int uzunluk = 1; uzunluk <= maks_uzunluk; uzunluk++) {
         std::string aday = "";
-        brute_force_rec(aday, karakter_seti, uzunluk);
+        brute_force_rec(aday, karakter_seti, uzunluk, dosya_yolu);
 
         if (bulundu) {
             break;

@@ -28,7 +28,7 @@ int main() {
 
     std::cout << "\n--- Brute-force basliyor ---\n\n";
 
-    std::string sonuc = brute_force("test.rar", karakter_seti, maks);
+    std::string sonuc = brute_force("test_data/test_sifreli.rar", karakter_seti, maks);
 
 
     std::cout << "\n--- Sonuc ---\n";
