@@ -1,5 +1,4 @@
 #include "bruteforce.h"
-#include <iostream>
 #include <cstdlib>
 
 //Şifre bulunursa erken durudamk için flag
@@ -34,7 +33,8 @@ static bool sifre_dene(const std::string& dosya_yolu, const std::string& aday)
     //unrar.exe programına ürettiğimiz şifreleri denemesi için veren cmd komutu
     std::string komut = "\"\"C:\\Program Files\\WinRAR\\unrar.exe\" t -p"
                     + aday
-                    + " \"" + dosya_yolu + "\"\"";
+                    + " \"" + dosya_yolu + "\"\" > nul 2>&1";
+    //Ekrana gereksiz mesajlar yazmaması için nul ekledim
 
     //Komudu çalıştıran system kodu
     int sonuc=system(komut.c_str());
@@ -52,7 +52,7 @@ static void brute_force_rec(std::string& aday, const std::string& karakter_seti,
 
     if (kalan == 0) {
 
-        std::cout << "Denenen: " << aday << std::endl;
+
 
         if (sifre_dene(dosya_yolu, aday)) {
             bulundu = true;
