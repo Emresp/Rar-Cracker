@@ -7,4 +7,6 @@ add_executable(RarCracker src/main.cpp
         src/rar/rar_reader.cpp
         src/rar/rar_reader.h
         src/util/hex_utils.cpp
-        src/util/hex_utils.h)
+        src/util/hex_utils.h
+        src/attack/bruteforce.cpp
+        src/attack/bruteforce.h)
